@@ -96,3 +96,48 @@ var generatePassword = function() {
           return pLenght; // We have a valid lengh, lets return our pLenght value.
         }
       }
+
+      function generatePasswordRandomness(userInput, pLenght) {
+        // Sample will be 8 characters for our test
+        // I need it to be from e.g 8--> 0 - 7 for my indexing array to be checked and printed later.
+        var valueRandom = 0;
+          
+        //var counter = 1; // Counter for the while loop
+        // We need to at a minimum use the criteria from user first as a "round"
+        // E.g 8 lenght selected by user. First round of user input e.g 1 2, lenght of 2 is the array. Therefore I need sample 8 (lenght selected by user)-2(User-input).
+        // Round of 2 (strict random in order) and 6 (random after round)
+        var counter = userInput.length // Use as our while loop topmost.
+        var UserCounter = userInput.length // Counter to say in line with the user input index to avoid undefines random attempts.
+        var finalPassword = "";  // Used to stored concatenate the strings together to finally assign to our displayPassword.
+      
+        // We need to guarantee user.lenth criteria rounds of purely criteria with random
+        for (var i = 0; i < userInput.length; i++) {
+      
+          var guaranteedCriteria = userInput[i];
+          // Produce string randomness around the userInput criteria of 1-4.
+          if (guaranteedCriteria === "1") {
+            //Round to the lowest number(Math.floor) after a random(Math.random) all possible alphabetical characters of 26 which will yield 0-25 (note we have 0 index on our objects, so we are good)
+            valueRandom = Math.floor(Math.random() * 26);
+            // call the pCritera uppercase object and pick a random index and concatenate to our finalPassword variable.
+            finalPassword += pCriteria.lowercase.criteria[valueRandom];
+      
+          } else if (guaranteedCriteria === "2") {
+            
+            valueRandom = Math.floor(Math.random() * 26);
+            finalPassword += pCriteria.uppercase.criteria[valueRandom];
+      
+          } else if (guaranteedCriteria === "3") {
+      
+            //Round to the lowest number(Math.floor) after a random(Math.random) of all possible numerals 0-9.
+            valueRandom = Math.floor(Math.random() * 10);
+            finalPassword += pCriteria.numeric.criteria[valueRandom];
+      
+          } else if (guaranteedCriteria === "4") {
+      
+            ///Round to the lowest number(Math.floor) after a random(Math.random) of all possible symbols 30 which will yield 0-19.
+            valueRandom = Math.floor(Math.random() * 31);
+            finalPassword += pCriteria.symbols.criteria[valueRandom];
+          } 
+        }
+      
+      
