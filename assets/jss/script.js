@@ -77,3 +77,22 @@ var generatePassword = function() {
            } 
        }
      }
+
+     function passLenght () { // This functions validate the user input for lenght of characters from 8-128
+
+        // Ask user for lenght of password.
+        window.alert("How long do you want your password to be from 8-128 characters.\n E.g 20");
+        var pLenght = parseInt(window.prompt("Please enter lenght")); // Convert to ingteger to check valid input.
+        if (pLenght < 8 || pLenght > 128) {
+          
+          window.alert("Please enter a valid number between 8-128");
+          passLenght();
+      
+        } else if (!pLenght) { // If null or Nan we will send the user back to the passLenght() function.
+          window.alert("Please enter a valid number between 8-128")
+          passLenght(); // Recurcion back to our function the get lenght.
+        } else {
+          window.alert("You have entered a valid lenght of: " + pLenght + "\n Password will now be generated");
+          return pLenght; // We have a valid lengh, lets return our pLenght value.
+        }
+      }
